@@ -58,10 +58,54 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(210, 105, 30, 0.3);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
   }
   50% {
-    box-shadow: 0 0 30px rgba(210, 105, 30, 0.6);
+    box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+  }
+}
+
+@keyframes bloom {
+  0% {
+    filter: brightness(1) contrast(1) saturate(1);
+    transform: scale(1);
+  }
+  50% {
+    filter: brightness(1.2) contrast(1.1) saturate(1.3);
+    transform: scale(1.02);
+  }
+  100% {
+    filter: brightness(1) contrast(1) saturate(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.8), 0 0 30px rgba(76, 175, 80, 0.4);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }
 
@@ -100,6 +144,43 @@
 
 .animate-fade-in {
   animation: fade-in 0.8s ease-out;
+}
+
+.animate-bloom {
+  animation: bloom 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.bloom-effect {
+  transition: all 0.3s ease;
+}
+
+.bloom-effect:hover {
+  filter: brightness(1.1) contrast(1.05) saturate(1.2);
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(76, 175, 80, 0.3);
+}
+
+.glow-effect {
+  transition: all 0.3s ease;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+  transform: translateY(-2px);
 }
 
 /* Smooth Scrolling */

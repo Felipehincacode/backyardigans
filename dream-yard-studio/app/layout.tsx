@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://dreamyardstudio.com'),
+  metadataBase: new URL('https://dream-yard-studio.vercel.app'),
   openGraph: {
     title: "Dream Yard Studio - Professional Landscape Design & Renovation",
     description: "Transform your outdoor space with professional landscape design and renovation services.",
-    url: 'https://dreamyardstudio.com',
+    url: 'https://dream-yard-studio.vercel.app',
     siteName: 'Dream Yard Studio',
     images: [
       {

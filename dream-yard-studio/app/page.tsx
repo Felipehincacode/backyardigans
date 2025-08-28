@@ -12,6 +12,7 @@ import ScrollSection, {
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleSectionChange = (section: number) => {
@@ -25,42 +26,48 @@ export default function Home() {
       title: 'Modern Garden Oasis',
       category: 'Complete Renovation',
       location: 'Austin, TX',
-      value: '$65,000'
+      value: '$65,000',
+      description: 'A contemporary garden transformation featuring clean lines, native plants, and sustainable irrigation systems that create a peaceful retreat in the heart of the city.'
     },
     {
       src: '/445285832_1889240578194619_5099271348342018501_n.jpg',
       title: 'Urban Retreat',
       category: 'Small Space Design',
       location: 'San Francisco, CA',
-      value: '$38,000'
+      value: '$38,000',
+      description: 'Maximizing every square foot with vertical gardens, multi-functional spaces, and smart design solutions that turn a compact urban lot into a luxurious outdoor living area.'
     },
     {
       src: '/446099148_1000361161602215_941712444517805526_n.jpg',
       title: 'Family Entertainment Hub',
       category: 'Outdoor Living',
       location: 'Dallas, TX',
-      value: '$85,000'
+      value: '$85,000',
+      description: 'The ultimate family gathering space featuring a custom fire pit, outdoor kitchen, and entertainment zones designed for creating lasting memories with loved ones.'
     },
     {
       src: '/445781935_396122790085768_3473243598816708884_n.jpg',
       title: 'Luxury Pool & Garden',
       category: 'High-End Design',
       location: 'Miami, FL',
-      value: '$150,000'
+      value: '$150,000',
+      description: 'A stunning transformation featuring a custom pool, outdoor kitchen, and meticulously designed garden spaces that create the ultimate outdoor living experience.'
     },
     {
       src: '/446261064_1148067829723246_7362982735102618644_n.jpg',
       title: 'Sustainable Landscape',
       category: 'Eco-Friendly Design',
       location: 'Portland, OR',
-      value: '$45,000'
+      value: '$45,000',
+      description: 'An environmentally conscious design using drought-resistant plants, rainwater harvesting, and organic materials to create a beautiful, sustainable landscape.'
     },
     {
       src: '/446346501_802714328473787_3835727718607343372_n.jpg',
       title: 'Seasonal Color Garden',
       category: 'Year-Round Beauty',
       location: 'Seattle, WA',
-      value: '$42,000'
+      value: '$42,000',
+      description: 'A carefully curated garden that provides vibrant colors and visual interest throughout all four seasons, ensuring year-round beauty and enjoyment.'
     }
   ];
 
@@ -138,7 +145,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            <ParallaxText className="text-white mb-8">
+            <ParallaxText className="text-white mb-8 animate-bloom">
               REIMAGINE YOUR OUTDOORS
             </ParallaxText>
             
@@ -151,7 +158,7 @@ export default function Home() {
 
             <FadeIn delay={1.2}>
               <motion.button 
-                className="bg-[#4CAF50] text-white px-12 py-6 rounded-lg font-bold text-xl hover:bg-[#388E3C] transition-all duration-300 shadow-2xl"
+                className="bg-[#4CAF50] text-white px-12 py-6 rounded-lg font-bold text-xl hover:bg-[#388E3C] transition-all duration-300 shadow-2xl glow-effect"
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -308,33 +315,95 @@ export default function Home() {
           </FadeIn>
 
           <div className="space-y-16">
-            {/* Featured Project */}
+            {/* Featured Project Slider */}
             <FadeIn>
               <div className="relative group">
-                <div className="aspect-[16/9] relative overflow-hidden rounded-3xl">
-                  <Image
-                    src="/445781935_396122790085768_3473243598816708884_n.jpg"
-                    alt="Luxury Pool & Garden"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  
-                  {/* Project Info */}
-                  <div className="absolute bottom-0 left-0 right-0 p-12">
-                    <div className="max-w-4xl">
-                      <h3 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                        Luxury Pool & Garden
-                      </h3>
-                      <p className="text-xl text-gray-300 mb-6 max-w-2xl">
-                        A stunning transformation featuring a custom pool, outdoor kitchen, and meticulously designed garden spaces that create the ultimate outdoor living experience.
-                      </p>
-                      <div className="flex items-center gap-8 text-white">
-                        <span className="text-2xl font-bold text-[#4CAF50]">$150,000</span>
-                        <span className="text-lg">Miami, FL</span>
-                        <span className="text-lg">High-End Design</span>
-                      </div>
+                <div className="aspect-[16/9] relative overflow-hidden rounded-3xl bg-black">
+                  {/* Slider Container */}
+                  <div className="relative w-full h-full">
+                    {projectImages.map((project, index) => (
+                      <motion.div
+                        key={index}
+                        className="absolute inset-0"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: currentSlide === index ? 1 : 0 }}
+                        transition={{ duration: 0.8, ease: "easeInOut" }}
+                      >
+                        <Image
+                          src={project.src}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        
+                        {/* Project Info */}
+                        <div className="absolute bottom-0 left-0 right-0 p-12">
+                          <div className="max-w-4xl">
+                            <motion.h3 
+                              className="text-4xl md:text-6xl font-bold text-white mb-4"
+                              initial={{ y: 50, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.3, duration: 0.8 }}
+                            >
+                              {project.title}
+                            </motion.h3>
+                            <motion.p 
+                              className="text-xl text-gray-300 mb-6 max-w-2xl"
+                              initial={{ y: 30, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.5, duration: 0.8 }}
+                            >
+                              {project.description || "A stunning transformation featuring custom design elements and meticulously crafted outdoor spaces that create the ultimate living experience."}
+                            </motion.p>
+                            <motion.div 
+                              className="flex items-center gap-8 text-white"
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.7, duration: 0.8 }}
+                            >
+                              <span className="text-2xl font-bold text-[#4CAF50]">{project.value}</span>
+                              <span className="text-lg">{project.location}</span>
+                              <span className="text-lg">{project.category}</span>
+                            </motion.div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                    
+                    {/* Navigation Dots */}
+                    <div className="absolute bottom-8 right-8 flex space-x-3">
+                      {projectImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentSlide(index)}
+                          className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            currentSlide === index 
+                              ? 'bg-[#4CAF50] scale-125' 
+                              : 'bg-white/50 hover:bg-white/80'
+                          }`}
+                        />
+                      ))}
                     </div>
+                    
+                    {/* Arrow Navigation */}
+                    <button
+                      onClick={() => setCurrentSlide((prev) => (prev === 0 ? projectImages.length - 1 : prev - 1))}
+                      className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    
+                    <button
+                      onClick={() => setCurrentSlide((prev) => (prev === projectImages.length - 1 ? 0 : prev + 1))}
+                      className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>

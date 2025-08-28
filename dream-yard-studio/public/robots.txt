@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dream-yard-studio.vercel.app/sitemap.xml

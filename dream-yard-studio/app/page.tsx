@@ -327,9 +327,9 @@ export default function Home() {
         className="bg-black/50 p-0"
       >
         <div className="w-full h-screen flex flex-col">
-          <div className="text-center pt-16 pb-8">
+          <FadeIn className="text-center pt-16 pb-8">
             <h2 className="text-4xl md:text-6xl font-bold text-white">THIS IS THE NEW STANDARD</h2>
-          </div>
+          </FadeIn>
           <div className="flex-1 grid grid-cols-2 gap-0">
             {/* Card 1: TECHNOLOGY MEETS ART */}
             <div className="group relative overflow-hidden border-r border-gray-800">
@@ -399,75 +399,77 @@ export default function Home() {
         onSectionChange={handleSectionChange}
         className="relative bg-black"
       >
-        <div className="w-full h-screen relative">
-          {/* Main Image */}
-          {projectImages.map((project, index) => (
-            <motion.div
-              key={index}
-              className="absolute inset-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: currentSlide === index ? 1 : 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            >
-              <Image
-                src={project.src}
-                alt={project.title}
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-            </motion.div>
-          ))}
-          
-          {/* Project Info - Bottom Right */}
-          <div className="absolute bottom-8 right-8 w-96 max-w-[calc(100vw-4rem)]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 h-full flex flex-col justify-center">
+          <div className="w-full h-[75vh] relative">
+            {/* Main Image */}
             {projectImages.map((project, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{
-                  opacity: currentSlide === index ? 1 : 0,
-                  x: currentSlide === index ? 0 : 40
-                }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
                 className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: currentSlide === index ? 1 : 0 }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
               >
-                <div className="bg-black/70 backdrop-blur-xl rounded-2xl p-6 border border-[#22C55E]/30 shadow-2xl shadow-[#22C55E]/10">
-                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-gray-300 mb-3">{project.location} • {project.category}</p>
-                  <p className="text-2xl font-bold text-[#22C55E] mb-3">{project.value}</p>
-                  <p className="text-gray-200 text-sm leading-relaxed line-clamp-3">{project.description}</p>
-                </div>
+                <Image
+                  src={project.src}
+                  alt={project.title}
+                  fill
+                  className="object-cover rounded-2xl"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent rounded-2xl"></div>
               </motion.div>
             ))}
-          </div>
+            
+            {/* Project Info - Bottom Right */}
+            <div className="absolute bottom-8 right-8 w-full max-w-md">
+              {projectImages.map((project, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{
+                    opacity: currentSlide === index ? 1 : 0,
+                    x: currentSlide === index ? 0 : 40
+                  }}
+                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+                  className="absolute inset-0"
+                >
+                  <div className="bg-black/70 backdrop-blur-xl rounded-2xl p-6 border border-[#22C55E]/30 shadow-2xl shadow-[#22C55E]/10">
+                    <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-gray-300 mb-3">{project.location} • {project.category}</p>
+                    <p className="text-2xl font-bold text-[#22C55E] mb-3">{project.value}</p>
+                    <p className="text-gray-200 text-sm leading-relaxed line-clamp-3">{project.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
-          {/* Navigation */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-8">
-            <button
-              onClick={() => setCurrentSlide(p => (p === 0 ? projectImages.length - 1 : p - 1))}
-              className="w-12 h-12 bg-black/50 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
-          </div>
-          <div className="absolute top-1/2 -translate-y-1/2 right-8">
-            <button
-              onClick={() => setCurrentSlide(p => (p === projectImages.length - 1 ? 0 : p + 1))}
-              className="w-12 h-12 bg-black/50 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
-          </div>
-           {/* Dots */}
-          <div className="absolute bottom-8 left-8 flex space-x-2">
-            {projectImages.map((_, index) => (
+            {/* Navigation */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-8">
               <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-[#22C55E] scale-125' : 'bg-white/50 hover:bg-white'}`}
-              />
-            ))}
+                onClick={() => setCurrentSlide(p => (p === 0 ? projectImages.length - 1 : p - 1))}
+                className="w-12 h-12 bg-black/50 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+              </button>
+            </div>
+            <div className="absolute top-1/2 -translate-y-1/2 right-8">
+              <button
+                onClick={() => setCurrentSlide(p => (p === projectImages.length - 1 ? 0 : p + 1))}
+                className="w-12 h-12 bg-black/50 hover:bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+             {/* Dots */}
+            <div className="absolute bottom-8 left-8 flex space-x-2">
+              {projectImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-[#22C55E] scale-125' : 'bg-white/50 hover:bg-white'}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </ScrollSection>

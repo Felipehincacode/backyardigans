@@ -5,15 +5,15 @@
   --color-dark-bg: #0A0A0A;
   --color-dark-surface: #111111;
   --color-dark-card: #1A1A1A;
-  --color-accent-green: #4CAF50;
-  --color-accent-green-dark: #388E3C;
-  --color-accent-green-light: #66BB6A;
+  --color-accent-green: #22C55E;
+  --color-accent-green-dark: #16A34A;
+  --color-accent-green-light: #4ADE80;
   --color-white: #FFFFFF;
   --color-white-muted: #F5F5F5;
   --color-gray-light: #E0E0E0;
   --color-gray: #9E9E9E;
   --color-gray-dark: #424242;
-  --color-success: #4CAF50;
+  --color-success: #22C55E;
   --color-warning: #FF9800;
   
   /* Typography */
@@ -99,6 +99,13 @@
     transform: scale(1) rotate(180deg);
   }
 }
+
+/* Custom Gradients */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+
 
 @keyframes shimmer {
   0% {

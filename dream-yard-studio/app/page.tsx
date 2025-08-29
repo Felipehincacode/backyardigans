@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import ScrollSection, { 
   ParallaxText, 
@@ -180,8 +180,8 @@ export default function Home() {
             
             <FadeIn delay={0.8} className="mb-12">
               <p className="text-2xl md:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                The future of landscape design isn't just a service. 
-                <span className="text-[#4CAF50] font-semibold"> It's an experience.</span>
+                The future of landscape design isn&apos;t just a service. 
+                <span className="text-[#22C55E] font-semibold"> It&apos;s an experience.</span>
               </p>
             </FadeIn>
 
@@ -350,7 +350,7 @@ export default function Home() {
                       className="space-y-4"
                     >
                       <h3 className="text-3xl font-bold text-white group-hover:text-[#22C55E] transition-colors">TECHNOLOGY MEETS ART</h3>
-                      <p className="text-gray-300">We engineer your space into a stunning, detailed masterpiece. This isn't just a rendering; it's a portal to your future.</p>
+                      <p className="text-gray-300">We engineer your space into a stunning, detailed masterpiece. This isn&apos;t just a rendering; it&apos;s a portal to your future.</p>
                       <div className="inline-flex items-center space-x-3 pt-2 text-[#22C55E]">
                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
                         <span className="font-semibold">3D Design Technology</span>
